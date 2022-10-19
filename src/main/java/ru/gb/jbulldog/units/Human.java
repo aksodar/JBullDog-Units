@@ -1,8 +1,8 @@
 package ru.gb.jbulldog.units;
 
 public class Human {
-    private Profession profession;
-
+    private Profession profession; // думаю здесь нарушен принцип Dependency inversion, т.к. "внешний" класс
+                                   // высокого уровня не должен зависеть от внутреннего класса низкого уровня
     public Human(final Profession profession) {
         this.profession = profession;
     }
