@@ -6,13 +6,23 @@ import java.util.logging.Logger;
 
 
 public class HumanService {
-
+    /*
+    * Нарушен принцип Single responsibility,
+    * каждый класс должен иметь только одну ответственность,
+    * которая должна быть инкапсулирована в этом классе.
+    * Поле Logger должно быть объявлено как: private final Logger log;*/
     Logger log;
 
     public HumanService() {
         this.log = Logger.getLogger(HumanService.class.getName());
     }
 
+    /*
+    * Метод getHumansByProfessionCode без модификатора доступа (package private)
+    * в данном конкретном примере не нарушает принципов SOLID,
+    * но если нам понадобится с ним взаимодействовать в классе из другого пакета,
+    * то может быть нарушен принцип Open-closed,
+    * но я не уверен в этом.*/
     List<Human> getHumansByProfessionCode(final List<Human> humans, final int code){
         if(humans == null || humans.isEmpty()){
             log.fine("Empty humans list!");
