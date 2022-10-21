@@ -12,9 +12,4 @@ public class HumansGenerate {
         }
         return ppl;
     }
-
-    public static void main(String[] args) {
-        HumansGenerate hg = new HumansGenerate();
-        System.out.println(hg.createHumanList().get(1).getProfession());
-    }
 }
