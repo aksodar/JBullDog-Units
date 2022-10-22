@@ -22,11 +22,6 @@ class HumanServiceTest {
     }
 
     @Test
-    void createInstanceSuccessTest() {
-        assertEquals("HumanService", humanService.getClass().getSimpleName());
-    }
-
-    @Test
     void getHumanByProfessionCodeNullSuccessTest(){
         List<Human> expected = new ArrayList<>();
         List<Human> actual = humanService.getHumansByProfessionCode(null, 0);
