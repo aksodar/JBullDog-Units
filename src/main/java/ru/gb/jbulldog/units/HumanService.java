@@ -15,20 +15,24 @@ public class HumanService {
         this.humanRepository = new HumanRepository();
     }
 
-    List<Human> getHumansByProfessionCode(final List<Human> humans, final int code){
-        if(humans == null || humans.isEmpty()){
+    public HumanService(HumanRepository humanRepository) {
+        this.humanRepository = humanRepository;
+    }
+
+    List<Human> getHumansByProfessionCode(final List<Human> humans, final int code) {
+        if (humans == null || humans.isEmpty()) {
             log.fine("Empty humans list!");
             return new ArrayList<Human>();
         }
 
         boolean flag = false;
-        for(final Human.Profession p: Human.Profession.values()){
+        for (final Human.Profession p : Human.Profession.values()) {
             if (p.getCode() == code) {
                 flag = true;
                 break;
             }
         }
-        if(!flag){
+        if (!flag) {
             log.severe("Non valid code");
             throw new IllegalStateException("Non valid code");
         }
@@ -48,5 +52,11 @@ public class HumanService {
         List<Human> humans = humanRepository.getAll();
         //...
         return humans;
+    }
+
+    public Human getHumanByName(String name) {
+        Human human = humanRepository.getHumanByName(name);
+        //...
+        return human;
     }
 }
