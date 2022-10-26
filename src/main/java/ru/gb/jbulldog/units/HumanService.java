@@ -8,9 +8,11 @@ import java.util.logging.Logger;
 public class HumanService {
 
     Logger log;
+    private HumanRepository humanRepository;
 
     public HumanService() {
         this.log = Logger.getLogger(HumanService.class.getName());
+        this.humanRepository = new HumanRepository();
     }
 
     List<Human> getHumansByProfessionCode(final List<Human> humans, final int code){
@@ -32,13 +34,19 @@ public class HumanService {
         }
 
         final List<Human> result = new ArrayList<Human>();
-        for(final Human human: humans){
-            if(human.getProfession().getCode() == code){
+        for (final Human human : humans) {
+            if (human.getProfession().getCode() == code) {
                 result.add(human);
             }
         }
         log.fine(String.format("Find %s items.", result.size()));
 
         return result;
+    }
+
+    public List<Human> getOrderedAllHumans() {
+        List<Human> humans = humanRepository.getAll();
+        //...
+        return humans;
     }
 }
