@@ -15,21 +15,27 @@ public class HumanService {
         this.humanRepository = new HumanRepository();
     }
 
-    List<Human> getHumansByProfessionCode(final List<Human> humans, final int code){
-        if(humans == null || humans.isEmpty()){
+    public HumanService(HumanRepository humanRepository) {
+        this.humanRepository = humanRepository;
+    }
+
+    List<Human> getHumansByProfessionCode(final List<Human> humans, final int code) {
+        if (humans == null || humans.isEmpty()) {
             log.fine("Empty humans list!");
+            //log.info("Empty humans list!");  для отображения лога в консоли
             return new ArrayList<Human>();
         }
 
         boolean flag = false;
-        for(final Human.Profession p: Human.Profession.values()){
+        for (final Human.Profession p : Human.Profession.values()) {
             if (p.getCode() == code) {
                 flag = true;
                 break;
             }
         }
-        if(!flag){
+        if (!flag) {
             log.severe("Non valid code");
+            //log.info("Non valid code"); для отображения лога в консоли
             throw new IllegalStateException("Non valid code");
         }
 
@@ -40,13 +46,20 @@ public class HumanService {
             }
         }
         log.fine(String.format("Find %s items.", result.size()));
+        //log.info(String.format("Find %s items.", result.size()));  для отображения лога в консоли
 
         return result;
     }
 
-    public List<Human> getOrderedAllHumans() {
+    public List<Human> getOrderedAllHumans() { // Mockito
         List<Human> humans = humanRepository.getAll();
         //...
         return humans;
+    }
+
+    public Human getHumanByName(String name) {// Mockito
+        Human human = humanRepository.getHumanByName(name);
+        //...
+        return human;
     }
 }
